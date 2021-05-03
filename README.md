@@ -6,7 +6,7 @@
 Repositorio correspondiente a la práctica final de la asignatura Visualización de datos
 del máster de Ciencia de Datos de la UOC. La práctica está hecha utilizando R y RStudio como herramienta de desarrollo para combinar los tres datasets escogidos para dicha práctica.
 
-Mediante los tres datasets escogidos de la web Our World in data se ha generado un dataset final que será utilizado en la práctica final de la asignatura.
+Mediante los tres datasets escogidos de la web Our World in data se ha generado un dataset final llamado **co2_greenhouse_emissions_deaths**, que será utilizado en la práctica final de la asignatura.
 
 
 ## Carpetas y ficheros  
