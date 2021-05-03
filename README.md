@@ -13,9 +13,9 @@ Mediante los tres datasets escogidos de la web Our World in data se ha generado 
 
 ## Carpetas y ficheros  
 
-- *co2_greenhouse_emissions_deaths.csv: Dataset en formato csv resultante de la combinación de los datasets anteriores.
-- *co2_greenhouse_emissions_deaths.xlsx: Dataset en formato xlsx resultante de la combinación de los datasets anteriores.
-- *co2_greenhouse_emissions_deaths_codebook.csv: CSV con todas las variables del dataset co2_greenhouse_emissions_deaths.
+- co2_greenhouse_emissions_deaths.csv: Dataset en formato csv resultante de la combinación de los datasets anteriores.
+- co2_greenhouse_emissions_deaths.xlsx: Dataset en formato xlsx resultante de la combinación de los datasets anteriores.
+- co2_greenhouse_emissions_deaths_codebook.csv: CSV con todas las variables del dataset co2_greenhouse_emissions_deaths.
 
 - **src**:
     - *src/respiratory-disease-death-rate.rmd*: Informe con el análisis de los datos.
