@@ -1,0 +1,110 @@
+---
+  title: "Práctica: Selección del conjunto de datos"
+  author: "Maite Gracia"
+  date: '`r format(Sys.Date(),"%e de %B, %Y")`'
+  output:
+    pdf_document:
+      toc: yes
+      toc_depth: 4
+      number_sections: yes
+    html_document:
+      highlight: default
+      number_sections: yes
+      theme: cosmo
+      toc: yes
+      toc_depth: 4
+---
+
+******
+# Introducción
+
+Combinación de las tres bases de datos escogidas para la práctica de Visualización de datos del Máster de Ciencias de datos de la Universitat Oberta de Catalunya. Con esto se pretende crear un dataset final que englobará el dataset "Data on CO2 and Greenhouse Gas Emissions" [enlace](https://github.com/owid/co2-data), "Respiratory diseases death rate" [enlace](https://ourworldindata.org/grapher/respiratory-disease-death-rate) and "Death rate upper respiratory age" [enlace](https://ourworldindata.org/grapher/death-rate-upper-respiratory-age?country=~OWID_WRL), todas ellas extraídas de la web Our World in Data
+
+******
+
+
+```{r}
+# Carga dataset Our World in Data sobre la emisión de CO2 y los gases de 
+# efecto invernadero
+dfowid <- read.csv('../data/owid-co2-data.csv')
+head(dfowid, 2)
+```
+
+
+```{r}
+# Carga dataset United Nations, muertes por causa de muertes por pais
+drespiratory <- read.csv('../data/respiratory-disease-death-rate.csv')
+head(drespiratory, 2)
+
+# Cambiamos el nombre de las columnas Code a is_code y Year a year para que coincida
+# con los nombres de las columnas del dataset the Our World in data. 
+drespiratory$Entity <- NULL
+names(drespiratory)[1] <- paste('iso_code')
+names(drespiratory)[2] <- paste('year')
+names(drespiratory)[3] <- paste('death_rate')
+head(drespiratory, 2)
+```
+
+```{r}
+# Carga dataset United Nations, muertes por causa de muertes por pais
+drespiratoryage <- read.csv('../data/death-rate-upper-respiratory-age.csv')
+head(drespiratoryage, 2)
+
+# Al igual que en el caso anterior, ambiamos el nombre de las columnas Code a
+# is_code y Year a year para que coincida
+# con los nombres de las columnas del dataset the Our World in data. 
+drespiratoryage$Entity <- NULL
+names(drespiratoryage)[1] <- paste('iso_code')
+names(drespiratoryage)[2] <- paste('year')
+names(drespiratoryage)[3] <- paste('death_age_50_to_69')
+names(drespiratoryage)[4] <- paste('death_age_under_5')
+names(drespiratoryage)[5] <- paste('death_age_above_70')
+names(drespiratoryage)[6] <- paste('death_age_5_to_14')
+names(drespiratoryage)[7] <- paste('death_age_15_to_49')
+head(drespiratoryage, 2)
+```
+
+```{r}
+# Se crean las nuevas variables que añadiremos al dataset final extraídas de los 
+# dos datasets complementarios sobre muertes por enfermedades respiratorias y 
+# muertes por enfermedades respiratorias repartidos por edad
+drespiratoryNew <- drespiratory
+drespiratoryageNew <- drespiratoryage
+final_dataset <- dfowid
+final_dataset['death_rate'] <- NA
+final_dataset['death_age_50_to_69'] <- NA
+final_dataset['death_age_under_5'] <- NA
+final_dataset['death_age_above_70'] <- NA
+final_dataset['death_age_5_to_14'] <- NA
+final_dataset['death_age_15_to_49'] <- NA
+
+for (i in 1:length(drespiratoryNew$iso_code)) {
+  for (j in 1:length(final_dataset$iso_code)) {
+    if (drespiratoryNew$iso_code[i] == final_dataset$iso_code[j] && drespiratoryNew$year[i] == final_dataset$year[j]) {
+      final_dataset$death_rate[j] <- drespiratoryNew$death_rate[i]
+    }
+  }
+}
+
+for (i in 1:length(drespiratoryageNew$iso_code)) {
+  for (j in 1:length(final_dataset$iso_code)) {
+    if (drespiratoryageNew$iso_code[i] == final_dataset$iso_code[j] && drespiratoryageNew$year[i] == final_dataset$year[j]) {
+      final_dataset$death_age_50_to_69[j] <- drespiratoryageNew$death_age_50_to_69[i]
+      final_dataset$death_age_under_5[j] <- drespiratoryageNew$death_age_under_5[i]
+      final_dataset$death_age_above_70[j] <- drespiratoryageNew$death_age_above_70[i]
+      final_dataset$death_age_5_to_14[j] <- drespiratoryageNew$death_age_5_to_14[i]
+      final_dataset$death_age_15_to_49[j] <- drespiratoryageNew$death_age_15_to_49[i]
+    }
+  }
+}
+```
+
+
+```{r}
+library(writexl)
+# Generamos el dataset final y lo exportamos a csv y excel
+write.csv(final_dataset, '../data/co2_greenhouse_emissions_deaths.csv')
+write_xlsx(final_dataset, '../data/co2_greenhouse_emissions_deaths.xlsx')
+```
+
+
