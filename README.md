@@ -1,5 +1,3 @@
-# practica-visualizacion-de-datos
-
 # PRACTICA - Selección del conjunto de datos
 
 
