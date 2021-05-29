@@ -18,7 +18,7 @@ Se han utilizado diferentes gráficas como mapas, gráficas de barras, de línea
 ## EMISIONES DE CO2 Y GASES DE EFECO INVERNADERO A ESCALA GLOBAL
 
 <center>
-    <iframe src="https://public.tableau.com/shared/CQH7ST95Y?:display_count=n&:origin=viz_share_link" width="1004" height="1269" frameborder="0">
+    <iframe src="https://public.tableau.com/shared/CQH7ST95Y?:embed=yes&:display_count=yes&:showVizHome=no" width="1004" height="1269" frameborder="0">
     </iframe>
 </center>
 
