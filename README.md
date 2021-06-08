@@ -8,13 +8,21 @@ del máster de Ciencia de Datos de la UOC. Para la publicación de la visualizac
 
 ## Ejecución
 
-Para arrancar la página en local:
+Para ejecutar la web en local, ya que Github pages hace uso de Jekyll habrá que seguir las siguientes instrucciones:
 
-1. Clonar el repositorio (git clone https://github.com/Txibani/practica-visualizacion-datos/tree/gh-pages)
-2. cd into the theme's directory
-3. Ejecutar script/bootstrap para instalar las dependencias necesarias
-4. Ejecutar bundle exec jekyll serve para arrancarlo en el server local
-5. La aplicación se abrirá en localhost:4000 en el navegador
+- Instalar Jekyll en local: [Jekyll site](https://jekyllrb.com/docs/installation/)
+
+    Se recomienda instalar Jekyll mediante Bundler, para ello:
+
+    - - Instalar Ruby [Ruby site](https://www.ruby-lang.org/en/documentation/installation/)
+    - - Instalar Bundler [Bundler site](https://bundler.io/)
+
+- Clonar el repositorio: git clone https://github.com/Txibani/practica-visualizacion-datos/tree/gh-pages
+- Posicionarse en el respositorio
+- Ejecutar: bundle install
+- Y por último, para arrancar la aplicación ejecutar: bundle exec jekyll serve 
+
+Para más información [enlace](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll)
 
 ## Carpetas y ficheros  
 
